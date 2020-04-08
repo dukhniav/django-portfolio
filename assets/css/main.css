@@ -1,5 +1,5 @@
 @import url(fontawesome-all.min.css);
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300");
+/* @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300"); */
 
 /*
 	Identity by HTML5 UP
@@ -522,6 +522,28 @@
 		color: #616f77 !important;
 		opacity: 1.0;
 	}
+/* Social */
+ul.social {
+	display: block;
+	margin: 5% 0;
+	list-style-type: none;
+	text-align: center;
+}
+
+ul.social li {
+	font-size: em;
+	display: inline;
+	padding: 0 2%;
+}
+
+ul.social li a {
+	color: #ececec;
+}
+
+ul.social li.instagram a:hover { color: rgb(81, 127, 237);}
+ul.social li.github a:hover { color: rgb(62, 44, 0);}
+ul.social li.linkedin a:hover { color: rgb(0, 123, 182);}
+ul.social li.envelope a:hover { color: rgb(255, 69, 0);}
 
 /* Icon */
 
@@ -919,7 +941,12 @@
 		cursor: default;
 		max-width: 100%;
 		opacity: 0.95;
-		position: relative;
+		vertical-align: center;
+		position: absolute;
+		margin: 0;
+		top: 50%;
+		-ms-transform: translateY(-50%);
+		transform: translateY(-50%);
 		text-align: center;
 		width: 27em;
 	}
