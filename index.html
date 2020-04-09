@@ -30,7 +30,7 @@
 						<div class="contact-form" id="contact-form" style="display: none">
 							<hr>
 							<h2>Write me!</h2>
-							<form method="post" action="#">
+							<form method="post" action="assets/php/email.php">
 								<div class="fields">
 									<div class="field">
 										<input type="text" name="name" id="name" placeholder="Name" />
@@ -51,7 +51,7 @@
 									</div>
 								</div>
 								<ul class="actions special">
-									<li><a href="#" class="button">Get Started</a></li>
+									<li><a href="#" class="button" type="submit" name="submit">Send it!</a></li>
 								</ul>
 							</form>
 							<hr>
@@ -78,7 +78,13 @@
 			</script>
 			<script>
 				function showContact() {
-   					document.getElementById('contact-form').style.display = "block";
+   					var x = document.getElementById('contact-form');
+					if (x.style.display === "none") {
+						x.style.display = "block";
+					} else {
+						x.style.display = "none";
+					}
+					
 				}
 			</script>
 
