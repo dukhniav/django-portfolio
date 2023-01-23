@@ -139,5 +139,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # auth
 LOGIN_URL = 'todos_login'
-LOGIN_REDIRECT_URL = 'todos/home'
+LOGIN_REDIRECT_URL = 'todos_home'
 LOGOUT_REDIRECT_URL = 'todos_login'
