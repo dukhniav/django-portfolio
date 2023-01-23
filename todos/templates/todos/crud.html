@@ -1,0 +1,86 @@
+{% extends 'todos/home.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="container-section">
+        <form action="{% url 'todos_home' %}" method="post" class="create-todo-form">
+            {% csrf_token %}
+
+            <input type="text" name="new-todo" id="new-todo" required>
+            <button type="submit">Add Todo</button>
+        </form>
+    </div>
+
+    {% for i in page_obj %}
+    <div class="todo-container">
+        <div class="todos">
+            <p>{{ i.name }}</p>
+            <ul class="crud-buttons">
+                <li>
+                    <button id="edit-todo" data-toggle="modal" data-target="#editTodoModal_{{ i.id }}">Edit</button>
+
+                    <div class="modal fade" id="editTodoModal_{{ i.id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="editTodoModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editTodoModalLabel">Update Todo Item</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" id="close-edit-modal">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{% url 'update_todo' i.id %}" method="post" class="edit-todo-form">
+                                    {% csrf_token %}
+                                    <div class="modal-body">
+                                        <input type="text" name="todo_{{ i.id }}" id="" value="{{ i.name }}" required
+                                            size="40">
+                                    </div>
+                                    <div class="modal-footerr">
+                                        <button type="button" class="btn btn-sm btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-sm btn-primary"
+                                            id="edit-todo-submit">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="{% url 'complete_todo' i.id %}" id="complete-todo">Completed</a></li>
+                <li><a href="{% url 'delete_todo' i.id %}" id="delete-todo">Delete</a></li>
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item previous-page">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled previous-page">
+                    <a class="page-link" href="?page=0" tabindex="-1">Previous</a>
+                </li>
+            {% endif %}
+
+            <li class="page-item active current-page">
+                <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+            </li>
+
+            {% if page_obj.has_next %}
+                <li class="page-item next-page">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" tabindex="-1">Next</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled next-page">
+                    <a class="page-link" href="?page=0" tabindex="-1">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+
+{% endblock %}
