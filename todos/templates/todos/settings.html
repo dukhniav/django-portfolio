@@ -1,0 +1,31 @@
+{% extends 'todos/home.html' %}
+<!-- {% load bootstrap5 %} -->
+
+{% block content %}
+<br>
+
+
+<br>
+{% if user.is_authenticated %}
+<div class="alert alert-success" role="alert">
+    <h2>Settings</h2>
+
+    {% if category_list %}
+    <ul>
+        {% for category in category_list %}
+        <li>{{ category.title }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <br>
+    <p>No categories are available.</p>
+    {% endif %}
+</div>
+{% else %}
+
+{% endif %}
+<br>
+<div class="center">
+
+</div>
+{% endblock content %}

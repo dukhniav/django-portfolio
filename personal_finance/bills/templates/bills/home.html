@@ -1,0 +1,18 @@
+{% extends 'finance/base.html' %} {% block content %}
+Hello, world. You're at the Bills index.
+<br><br>
+<a href="{% url 'finance' %}" class="link-primary">Back</a>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add Bill
+</button>
+
+{{ form.frequency }}
+
+
+<!-- modal here-->
+    {% include "bills/new_bill.html" %}
+
+{% endblock content %}

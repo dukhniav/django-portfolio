@@ -1,0 +1,40 @@
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+    <a class="navbar-brand" href="{% url 'todos_home' %}">TODOs</a>
+
+    {% if user.is_authenticated %}
+    <p id="welcome-user">Welcome, {{ request.user.username }}</p>
+
+
+    {% else %} <ul>
+        {% if request.path == '/register/' %}
+        <li>
+            <a class="link" href="{% url 'todos_login' %}">Login</a>
+        </li>
+        {% elif request.path == '/login/' %}
+        <li>
+            <a class="link" href="{% url 'todos_register' %}">Register</a>
+        </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+    <div class="collapse navbar-collapse" id="navbarsExample09">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'todos_home' %}">Home</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarsExample09">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link text-right" href="{% url 'todos_logout' %}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+{% endblock content %}
