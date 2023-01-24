@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'bootstrap5',
     # crispy forms
     'crispy_forms',
+    # tags manager
+    'taggit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
