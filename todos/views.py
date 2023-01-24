@@ -3,9 +3,11 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.views.generic import ListView
+
 
 from .forms import UserRegistrationForm, TodoForm
-from .models import TodoItem
+from .models import TodoItem, TodoCategory
 
 
 '''
@@ -18,8 +20,15 @@ def todos_home(request):
     Create todo item and view other todo items as well.
     """
     if request.method == 'POST':
-        todo_name = request.POST.get("new-todo")
-        todo = TodoItem.objects.create(name=todo_name, user=request.user)
+        title = request.POST.get("new-todo")
+        category = request.POST.get("new-category")
+        
+        if category == '':
+            category, created = TodoCategory.objects.get_or_create(title='General')
+        else:
+            category, created = TodoCategory.objects.get_or_create(title=category)
+            
+        todo = TodoItem.objects.create(title=title, category=category, user=request.user)
         return redirect("todos_home")
 
     # todo items
@@ -34,6 +43,12 @@ def todos_home(request):
 
     # NOTE: Need to change the html file to crud.html for displaying the todo's
     return render(request, "todos/crud.html", context)
+
+
+class SettingsView(ListView):
+    template_name = 'todos/settings.html'
+    context_object_name = 'category_list'
+    queryset = TodoCategory.objects.all()
 
 
 def todos_register(request):
@@ -72,7 +87,7 @@ def update_todo(request, pk):
     todo = get_object_or_404(TodoItem, id=pk, user=request.user)
 
     # NOTE: request.POST.get("todo_{pk}") is the input name of the todo modal
-    todo.name = request.POST.get(f"todo_{pk}")
+    todo.title = request.POST.get(f"todo_{pk}")
     todo.save()
     # return redirect("home")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
