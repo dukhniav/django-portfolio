@@ -28,28 +28,37 @@
         <a class="nav-link" aria-current="page" href="{% url 'finance' %}">Personal Finance</a>
         <a class="nav-link" aria-current="page" href="{% url 'todos_home' %}">TODOs</a> -->
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-            <a href="/" class="d-flex align-items-center  justify-content-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-terminal-fill" viewBox="0 0 16 16">
-                    <path d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3zm9.5 5.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm-6.354-.354a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146z"/>
-                  </svg>
+            <a href="/"
+                class="d-flex align-items-center  justify-content-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-terminal-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3zm9.5 5.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm-6.354-.354a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146z" />
+                </svg>
                 <span class="fs-4">&nbsp;Dukhnitskiy</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a href="{% url 'home' %}" class="nav-link active" aria-current="page">
+                    {% if request.path == "your_url" %}
+                    (dont show button)
+                    {% endif %}
+
+                   
+
+                    <a href="{% url 'home' %}" class="nav-link text-white {% if request.resolver_match.url_name == 'home' %}active{% endif %}" aria-current="page">
                         <i class="bi bi-house-fill"></i>
                         Home
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'finance' %}" class="nav-link text-white">
+                    <a href="{% url 'finance' %}" class="nav-link text-white {% if request.resolver_match.url_name == 'finance' %}active{% endif %}" aria-current="page">
                         <i class="bi bi-piggy-bank-fill"></i>
                         Finance
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'todos_home' %}" class="nav-link text-white">
+                    <a href="{% url 'todos_home' %}" class="nav-link text-white {% if request.resolver_match.url_name == 'todos_home' %}active{% endif %}" aria-current="page">
                         <i class="bi bi-check2-circle"></i>
                         Todos
                     </a>
@@ -93,10 +102,10 @@
         {% endblock navbar %}
 
 
-        <div class="content">
+        <div class="main-content">
             {% block content %}
 
-        {% endblock content %}
+            {% endblock content %}
         </div>
     </main>
 </body>
