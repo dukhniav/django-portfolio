@@ -5,5 +5,5 @@ from . import views
 
 urlpatterns = [
     path('', views.finance_home, name='finance'),
-    path('bills/', include('personal_finance.bills.urls')),
+    path('bills/', include('personal_finance.bills.urls'), name='bills'),
 ]

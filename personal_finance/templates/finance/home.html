@@ -1,18 +1,12 @@
-{% extends 'finance/base.html' %} 
+{% extends 'finance/base.html' %}
 
 {% block content %}
 
-Hello, world. You're at the Personal Finance index.
+{% include 'finance/nav.html' %}
 
-<div class="container">
+<h2>Finance Dashboard</h2>
 
 <a href="{% url 'bills' %}" class="link-primary">Bills</a>
-
-</div>
-
-<div class="container">
-    test
-</div>
 
 
 {% endblock content %}

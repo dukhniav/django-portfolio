@@ -4,6 +4,8 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.views.generic import ListView
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 from .forms import UserRegistrationForm, TodoForm
@@ -14,7 +16,7 @@ from .models import TodoItem, TodoCategory
 Based on https://medium.com/@nsew1999gokulcvan/create-a-to-do-application-with-user-authentication-and-pagination-in-django-be4a797b20e6
 '''
 
-@login_required
+@csrf_exempt
 def todos_home(request):
     """
     Create todo item and view other todo items as well.
