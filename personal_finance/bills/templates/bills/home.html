@@ -14,8 +14,8 @@
                             <h5 class="card-title">Bills and subscriptions</h5>
                         </div>
                         <div class="ms-auto p-2 bd-highlight">
-                            <button type="button" class="btn btn-primary">                    
-                                <a  href="{% url 'bill-new' %}">Add a bill</a>
+                            <button type="button" class="btn btn-primary">
+                                <a href="{% url 'bill-new' %}">Add a bill</a>
                             </button>
                         </div>
                     </div>
@@ -32,7 +32,13 @@
                 <form class="card-body tab-content">
                     <div class="tab-pane active" id="bills">
                         <ul class="list-group">
-                            {% include 'bills/bill_card.html' %}
+
+                            {% for i in bills %}
+                            <li class="list-group-item  justify-content">
+                                {% include 'bills/bill_card.html' %}
+                            </li>
+                            {% endfor %}
+
                         </ul>
                     </div>
                     <div class="tab-pane" id="subscriptions">
