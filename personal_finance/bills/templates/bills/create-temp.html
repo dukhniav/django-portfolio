@@ -1,13 +1,12 @@
 {% extends 'finance/base.html' %}
-
+	
 {% block content %}
 
-{% include 'finance/nav.html' %}
-
+<h2>New Post</h2>
 <form method="post" novalidate>
 	{% csrf_token %}
 	{{ form.as_p }}
 	<input type="submit" value="Save" />
 </form>
+{% endblock content %}
 
-{% endblock %}

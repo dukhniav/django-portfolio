@@ -4,7 +4,7 @@
 {% include 'todos/home.html' %}
 
 <div class="col col-11 mx-auto">
-    <form action="{% url 'todos_home' %}" method="post" class="create-todo-form">
+    <form action="{% url '.' %}" method="post">
 
         <div class="row bg-white rounded shadow-sm p-2 add-todo-wrapper align-items-center justify-content-center">
             {% csrf_token %}
