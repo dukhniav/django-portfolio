@@ -1,38 +1,20 @@
-<li class="list-group-item  justify-content">
-    <div class="container">
-        <div class="row">
-            <div class="col">DATE</div>
-            <div class="col-6">
-                <ul>
-                    <li>Account Nickname</li>
-                    <li>Account Name</li>
-                </ul>
-            </div>
-            <div class="col-4">
-                <ul>
-                    <li>Amount due</li>
-                    <li>Action</li>
-                </ul>
-            </div>
-            <div class="col">Settings?</div>
+<div class="container">
+    <div class="row">
+        <div class="col">{{ i.due_date|date:"d M"}}</div>
+        <div class="col-6">
+            <ul>
+                <li>Account Nickname</li>
+                <li>{{ i.title }}</li>
+            </ul>
         </div>
-</li>
-<li class="list-group-item  justify-content">
-    <div class="container">
-        <div class="row">
-            <div class="col">DATE</div>
-            <div class="col-6">
-                <ul>
-                    <li>Account Nickname</li>
-                    <li>Account Name</li>
-                </ul>
-            </div>
-            <div class="col-4">
-                <ul>
-                    <li>Amount due</li>
-                    <li>Action</li>
-                </ul>
-            </div>
-            <div class="col">Settings?</div>
+        <div class="col-4">
+            <ul>
+                <li>Amount due</li>
+                <li>Action</li>
+            </ul>
         </div>
-</li>
+        <div class="col">Settings?</div>
+    </div>
+</div>
+
+

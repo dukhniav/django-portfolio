@@ -1,16 +1,11 @@
 from django import forms
 from django.forms import ModelForm
-from .models import SimpleBill
+import datetime
 from .models import Bill
 
 class NewBillForm(ModelForm):
+    due_date = forms.DateField(initial=datetime.date.today)
+
     class Meta:
         model = Bill
-        fields = ['title']
-
-
-
-class SimpleBillForm(ModelForm):
-    class Meta:
-        model = SimpleBill
-        fields = ['bill_title']  
+        fields = ['title', 'due_date']
