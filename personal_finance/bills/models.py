@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 
 
 class BillType(models.Model):
+    """
+    Bill type model
+    """
     bill_type = models.CharField(max_length=20)
 
     def __str__(self) -> str:
@@ -12,6 +15,9 @@ class BillType(models.Model):
 
 
 class Bill(models.Model):
+    """
+    Bill model 
+    """
     RECURRING_CHOICES = [
         ('1', 'One time only'),
         ('2', 'Weekly'),

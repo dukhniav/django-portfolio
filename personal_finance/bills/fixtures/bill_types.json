@@ -40,5 +40,12 @@
         "fields": {
             "bill_type": "Daycare"
         }
+    },
+    {
+        "model": "bills.billtype",
+        "pk": 7,
+        "fields": {
+            "bill_type": "Subscription"
+        }
     }
 ]
