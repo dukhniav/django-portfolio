@@ -1,6 +1,7 @@
 ![](https://img.shields.io/github/actions/workflow/status/dukhniav/django-portfolio/codacy.yml)
 ![](https://img.shields.io/github/actions/workflow/status/dukhniav/django-portfolio/django.yml)
 ![](https://img.shields.io/github/actions/workflow/status/dukhniav/django-portfolio/semgrep.yml)
+![](https://img.shields.io/snyk/vulnerabilities/github/dukhniav/django-portfolio) 
 
 1 - run makemigrations
 2 - run migrate
