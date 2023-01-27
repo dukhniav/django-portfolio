@@ -9,6 +9,10 @@ from django.forms import forms
 from django.shortcuts import render
 from .models import Bill
 from .forms import NewBillForm
+from django.views import generic
+from .models import Bill
+from django.contrib.auth import get_user_model
+
 
 def home(request):
     bills = Bill.objects.all()
@@ -16,18 +20,33 @@ def home(request):
 
     return render(request, 'bills/home.html', context)
 
+class BillView(generic.DetailView):
+    model = Bill
+    template_name = 'bills/view_bill.html'
 
+class EditView(generic.DetailView):
+    model = Bill
+    template_name = 'bills/edit_bill.html'
+    
+@login_required
 def new_bill(request):
     """
-    Create todo item and view other todo items as well.
+    Create bill and view other bills as well.
     """
     if request.method == 'GET':
         context = {'form': NewBillForm()}
         return render(request, 'bills/new_bill.html', context)
     elif request.method == 'POST':
         form = NewBillForm(request.POST)
+        user = get_user_model
         if form.is_valid():
-            form.save()
+            new_bill = form.save(commit=False)
+            new_bill.user_id = request.user.id
+            new_bill.save()
+            
             return redirect('bills')
         else:
             return render(request, 'bills/new_bill.html', {'form': form})
+
+
+

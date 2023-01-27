@@ -36,19 +36,13 @@ class TodoItem(models.Model):
 
     # TODO reorder functionality
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="todo_item")
-
     is_completed = models.BooleanField(default=False)
     is_favorite = models.BooleanField(default=False)
-    
     has_due_date = models.BooleanField(default=False)
-
     due_date = models.DateTimeField(null=True, default=None)
-
     has_reminder = models.BooleanField(default=False)
     reminder_date = models.DateTimeField(null=True, default=None)
-
     has_sub_todos = models.BooleanField(default=False)
-
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -63,4 +57,4 @@ class TodoItem(models.Model):
         verbose_name_plural = "todo_items"
 
     def __str__(self):
-        return str(self.name)
+        return str(self.title)
