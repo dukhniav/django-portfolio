@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # personal finance
     'personal_finance.apps.PersonalFinanceConfig',
     'personal_finance.bills.apps.BillsConfig',
+    'personal_finance.payments.apps.PaymentsConfig',
     # todo app
     'todos.apps.TodosConfig',
 ]

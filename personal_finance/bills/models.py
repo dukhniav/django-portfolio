@@ -1,8 +1,7 @@
 from django.db import models
-from django.urls import reverse
 from django.conf import settings
 from datetime import date
-
+from django.contrib.auth.models import User
 
 
 class BillType(models.Model):
@@ -32,6 +31,8 @@ class Bill(models.Model):
         ('6', '2 weeks'),
     ]
 
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     due_date = models.DateField(auto_now=False, auto_now_add=False,default=date.today)
     bill_type = models.ForeignKey(BillType, on_delete=models.CASCADE)
@@ -39,7 +40,19 @@ class Bill(models.Model):
     recurring = models.CharField(max_length=24, choices=RECURRING_CHOICES, default='1', blank=False, null=False)
     reminder = models.CharField(max_length=24, choices=REMINDER_CHOICES, default='1', blank=False, null=False)
     due_date_reminder = models.BooleanField(default=False)
-    
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    payment_date = models.DateField(auto_now=False, auto_now_add=False,default=date.today)
 
+    class Meta:
+        """
+        Meta Information
+        """
+        app_label = "bills"
+        db_table = "bills"
+        verbose_name = "bill_item"
+        verbose_name_plural = "bill_items"
+        
     def __str__(self):
         return str(self.title)
+

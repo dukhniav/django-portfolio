@@ -16,7 +16,7 @@ from .models import TodoItem, TodoCategory
 Based on https://medium.com/@nsew1999gokulcvan/create-a-to-do-application-with-user-authentication-and-pagination-in-django-be4a797b20e6
 '''
 
-@csrf_exempt
+@login_required
 def todos_home(request):
     """
     Create todo item and view other todo items as well.

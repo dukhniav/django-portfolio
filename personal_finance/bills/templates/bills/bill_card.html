@@ -1,20 +1,26 @@
 <div class="container">
-    <div class="row">
-        <div class="col">{{ i.due_date|date:"d M"}}</div>
-        <div class="col-6">
-            <ul>
-                <li>Account Nickname</li>
-                <li>{{ i.title }}</li>
-            </ul>
+    <div class="row align-items-center">
+        <a class="col-auto col-11 text-decoration-none text-muted" href="{% url 'bill-view' i.id %}">
+            <div class="row align-items-center">
+                <div class="col-auto col-1">{{ i.due_date|date:"d M"}}</div>
+                <div class="col-auto col-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><span class="align-middle">{{ i.title }}</span></li>
+                    </ul>
+                </div>
+                <div class="col-auto col-4">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item text-end">${{ i.amount }}</li>
+                        <li class="list-group-item text-end">Mark as paid</li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+        <div class="col-auto">
+            <svg class="bi pe-none me-2" width="16" height="16"></svg>
+            <a href="{% url 'bill-edit' i.id %}" aria-current="page">
+                <i class="bi bi-gear-fill"></i>
+            </a>
         </div>
-        <div class="col-4">
-            <ul>
-                <li>Amount due</li>
-                <li>Action</li>
-            </ul>
-        </div>
-        <div class="col">Settings?</div>
     </div>
 </div>
-
-
