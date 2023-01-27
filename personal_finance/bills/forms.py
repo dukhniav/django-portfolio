@@ -8,4 +8,12 @@ class NewBillForm(ModelForm):
 
     class Meta:
         model = Bill
-        fields = ['title', 'due_date']
+        fields = [
+            'title', 
+            'due_date', 
+            'amount', 
+            'recurring',
+            'bill_type',
+            'reminder',
+            'due_date_reminder'
+            ]

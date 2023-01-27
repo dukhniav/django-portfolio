@@ -10,12 +10,8 @@ from django.shortcuts import render
 from .models import Bill
 from .forms import NewBillForm
 
-def bills(request):
-
-    # todo items
+def home(request):
     bills = Bill.objects.all()
-
-
     context = {"bills": bills}
 
     return render(request, 'bills/home.html', context)
