@@ -10,4 +10,3 @@ urlpatterns = [
     path('<int:pk>/view/', views.BillView.as_view(), name='bill-view'),
     path('<int:pk>/edit/', views.EditView.as_view(), name='bill-edit'),
 ]
-

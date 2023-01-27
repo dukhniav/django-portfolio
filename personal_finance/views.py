@@ -11,4 +11,4 @@ from django.views.generic import ListView
 
 @login_required
 def finance_home(request):
-    return render(request, "finance/home.html") 
+    return render(request, "finance/home.html")

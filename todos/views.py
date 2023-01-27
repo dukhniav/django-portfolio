@@ -7,7 +7,6 @@ from django.views.generic import ListView
 from django.views.decorators.csrf import csrf_exempt
 
 
-
 from .forms import UserRegistrationForm, TodoForm
 from .models import TodoItem, TodoCategory
 
@@ -15,6 +14,7 @@ from .models import TodoItem, TodoCategory
 '''
 Based on https://medium.com/@nsew1999gokulcvan/create-a-to-do-application-with-user-authentication-and-pagination-in-django-be4a797b20e6
 '''
+
 
 @login_required
 def todos_home(request):
@@ -24,17 +24,21 @@ def todos_home(request):
     if request.method == 'POST':
         title = request.POST.get("new-todo")
         category = request.POST.get("new-category")
-        
+
         if category == '':
-            category, created = TodoCategory.objects.get_or_create(title='General')
+            category, created = TodoCategory.objects.get_or_create(
+                title='General')
         else:
-            category, created = TodoCategory.objects.get_or_create(title=category)
-            
-        todo = TodoItem.objects.create(title=title, category=category, user=request.user)
+            category, created = TodoCategory.objects.get_or_create(
+                title=category)
+
+        todo = TodoItem.objects.create(
+            title=title, category=category, user=request.user)
         return redirect("todos_home")
 
     # todo items
-    todos = TodoItem.objects.filter(user=request.user, is_completed=False).order_by("-id")
+    todos = TodoItem.objects.filter(
+        user=request.user, is_completed=False).order_by("-id")
 
     # pagination 4 items per page
     paginator = Paginator(todos, 4)
@@ -59,7 +63,7 @@ def todos_register(request):
 
     Args:
         request (POST): New user registered
-    """    
+    """
     form = UserRegistrationForm()
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
@@ -76,7 +80,7 @@ def todos_register(request):
 def logout_user(request):
     logout(request)
     return redirect("todos_login")
-    
+
 
 def update_todo(request, pk):
     """
@@ -101,7 +105,7 @@ def complete_todo(request, pk):
 
     Args:
         pk (Integer): Todo ID - primary key
-    """    
+    """
     todo = get_object_or_404(TodoItem, id=pk, user=request.user)
     todo.is_completed = True
     todo.save()
@@ -115,7 +119,7 @@ def delete_todo(request, pk):
 
     Args:
         pk (Integer): Todo ID - Primary key
-    """    
+    """
     todo = get_object_or_404(TodoItem, id=pk, user=request.user)
     todo.delete()
     # return redirect("home")
