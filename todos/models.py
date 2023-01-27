@@ -10,6 +10,7 @@ class TodoCategory(models.Model):
     def __str__(self) -> str:
         return str(self.title)
 
+
 class TodoTag(models.Model):
     title = models.CharField(max_length=10)
 
@@ -20,22 +21,24 @@ class TodoTag(models.Model):
 class TodoItem(models.Model):
     """
     Todo Item Model
-    """    
+    """
 
     PRIORITY_CHOICES = (
-        ('1','Low'),
+        ('1', 'Low'),
         ('2', 'Normal'),
-        ('3','High'),
+        ('3', 'High'),
     )
 
     title = models.CharField(max_length=100)
     notes = models.TextField(max_length=500, default='')
-    category = models.ForeignKey(TodoCategory,on_delete=models.CASCADE)
-    priority = models.CharField(max_length=9, choices=PRIORITY_CHOICES, default='1')
+    category = models.ForeignKey(TodoCategory, on_delete=models.CASCADE)
+    priority = models.CharField(
+        max_length=9, choices=PRIORITY_CHOICES, default='1')
     tags = TaggableManager()
 
     # TODO reorder functionality
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="todo_item")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE, related_name="todo_item")
     is_completed = models.BooleanField(default=False)
     is_favorite = models.BooleanField(default=False)
     has_due_date = models.BooleanField(default=False)
@@ -45,7 +48,6 @@ class TodoItem(models.Model):
     has_sub_todos = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-
 
     class Meta:
         """

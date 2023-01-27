@@ -1,16 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from django.views.generic.edit import CreateView
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib import messages
-from django.forms import forms
 from django.shortcuts import render
 from .models import Bill
 from .forms import NewBillForm
 from django.views import generic
-from .models import Bill
 from django.contrib.auth import get_user_model
 
 
@@ -20,14 +13,17 @@ def home(request):
 
     return render(request, 'bills/home.html', context)
 
+
 class BillView(generic.DetailView):
     model = Bill
     template_name = 'bills/view_bill.html'
 
+
 class EditView(generic.DetailView):
     model = Bill
     template_name = 'bills/edit_bill.html'
-    
+
+
 @login_required
 def new_bill(request):
     """
@@ -43,10 +39,7 @@ def new_bill(request):
             new_bill = form.save(commit=False)
             new_bill.user_id = request.user.id
             new_bill.save()
-            
+
             return redirect('bills')
         else:
             return render(request, 'bills/new_bill.html', {'form': form})
-
-
-
