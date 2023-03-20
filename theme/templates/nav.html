@@ -1,0 +1,20 @@
+<nav class="flex justify-end h-20 items-center bg-slate-400 dark:bg-slate-900 text-black dark:text-gray-100 px-6 py-2">
+    <ul class='flex'>
+      <li class='px-4'><a href='{% url 'home' %}' class='hover:text-zinc-400'><i class="fa-regular fa-house"></i> home</li>
+      <li class='px-4'><a href='{% url 'about' %}' class='hover:text-zinc-400'><i class="fa-regular fa-motorcycle"></i> about</li>
+      <li class='px-4'><a href='{% url 'projects' %}' class='hover:text-zinc-400'><i class="fa-regular fa-ghost"></i> projects</li>
+      <li class='px-4'><a href='{% url 'resume' %}' class='hover:text-zinc-400'><i class="fa-regular fa-rocket"></i> resume</li>
+      <li class='px-4'><a href='https://github.com/dukhniav' class='hover:text-zinc-400'><i class="fa-regular fa-code-branch"></i> <i class="fa-brands fa-github"></i> <i class="fa-sharp fa-solid fa-star"></i></li>
+    </ul>
+
+    <div>
+        <a href="{% url 'change-theme' %}" class="bg-gray-100 px-4 py-2 rounded-xl hover:bg-gray-300 duration-300 dark:bg-slate-600">
+            {% if is_dark_theme %}
+                <i class="fa-solid fa-sun"></i>
+            {% else %}
+                <i class="fa-solid fa-moon"></i>
+            {% endif %}
+        </a>
+    </div>
+  </div>
+</nav>
